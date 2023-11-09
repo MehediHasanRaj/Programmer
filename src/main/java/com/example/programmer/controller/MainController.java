@@ -31,7 +31,7 @@ public class MainController {
 //        return mv;
     }
 
-    @GetMapping("/allprogrammer")
+    @GetMapping( "/allprogrammer")
     public ModelAndView allprogrammer(){
         ModelAndView mv = new ModelAndView("allProgrammer.html");
         List<Programmer> p = new ArrayList<Programmer>();
