@@ -23,13 +23,7 @@ public class MainController {
     public String homepage(){
         return "home.html";
     }
-    @PostMapping("/addProgrammer")
-    public String addProgrammer(@ModelAttribute Programmer programmer){
-//        ModelAndView mv = new ModelAndView("programmerInfo.html");
-            pr.save(programmer);
-          return "programmerInfo.html";
-//        return mv;
-    }
+
 
     @GetMapping( "/allprogrammer")
     public ModelAndView allprogrammer(){
@@ -41,4 +35,53 @@ public class MainController {
         mv.addObject("programmers",p);
         return mv;
     }
+
+
+//              CRUD operation methods
+//-------------------------------------------
+    @PostMapping("/addProgrammer") // Create/insert data to database
+    public String addProgrammer(@ModelAttribute Programmer programmer){
+        pr.save(programmer);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/findById") // get data from database
+    public String findById(@RequestParam int pId, Model model){
+        Programmer p = pr.getOne(pId);
+        model.addAttribute("programmer", p);
+        return "programmerInfo.html";
+
+    }
+
+
+    @GetMapping ("/deleteProgrammer") // delete data from database
+    public String deleteProgrammer(@RequestParam int pId, Model model){
+        pr.deleteById(pId);
+        return "redirect:/home";
+
+    }
+
+    @PostMapping("/updateProgrammer") // update data to database
+    public String updateProgrammer(@ModelAttribute Programmer programmer){
+        Programmer p = pr.getOne(programmer.getpId());
+        p.setpName(programmer.getpName());
+        p.setpLan(programmer.getpLan());
+        pr.save(p);
+        return "ProgrammerInfo.html";
+    }
+
+    // custom query method
+
+    @PostMapping("/findByLan") // get data from database
+    public String findByLan(@RequestParam String pLan, Model model){
+        List<Programmer> p = pr.findBypLan(pLan);
+        model.addAttribute("programmers", p);
+        return "allprogrammer.html";
+
+    }
+
+
+
+
+
 }

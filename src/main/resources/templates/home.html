@@ -17,5 +17,39 @@
     <input type="text" name="pLan"></input>
     <button type="submit">Add Programmer</button>
 </form>
+
+
+  <form action="findById" method="POST">
+      <h3>Enter the programmer id</h3>
+      <input type="text" name="pId"></input>
+      <button type="submit">Find by Id</button>
+  </form>
+
+  <form action="deleteProgrammer" method="GET">
+      <h3>Enter the programmer id</h3>
+      <input type="text" name="pId"></input>
+      <button type="submit">Delete</button>
+  </form>
+
+  <form action="updateProgrammer" method="POST">
+      <h3>Enter the programmer id</h3>
+      <input type="text" name="pId"></input>
+      <h3>Enter the programmer Name</h3>
+      <input type="text" name="pName"></input>
+      <h3>Enter the programmer Language</h3>
+      <input type="text" name="pLan"></input>
+      <button type="submit">Update</button>
+  </form>
+
+
+
+// custom query form
+  <form action="findByLan" method="POST">
+      <h3>Enter the programmer Language</h3>
+      <input type="text" name="pLan"></input>
+      <button type="submit">Find by Language</button>
+  </form>
+
+
 </body>
 </html>
